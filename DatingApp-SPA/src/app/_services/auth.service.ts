@@ -1,3 +1,4 @@
+import { element } from 'protractor';
 import { environment } from './../../environments/environment';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
@@ -49,6 +50,20 @@ export class AuthService {
     const token = localStorage.getItem('token');
 
     return !this.jwtHelper.isTokenExpired(token);
+  }
+
+  roleMatch(allowedRoles): boolean {
+    let isMatch = false;
+    const userRoles = this.decodedToken.role as Array<string>;
+    allowedRoles.forEach(element => {
+    if (userRoles.includes(element)) {
+        isMatch = true;
+        return;
+      }
+    });
+
+    return isMatch;
+
   }
 
 }

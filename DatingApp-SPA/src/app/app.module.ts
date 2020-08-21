@@ -1,3 +1,9 @@
+import { RolesModalComponent } from './admin/roles-modal/roles-modal.component';
+import { AdminService } from './_services/admin.service';
+import { UserManagementComponent } from './admin/user-management/user-management.component';
+import { PhotoManagementComponent } from './admin/photo-management/photo-management.component';
+import { HasRoleDirective } from './_directives/hasRole.directive';
+import { AdminPanelComponent } from './admin/admin-panel/admin-panel.component';
 import { MemberMessagesComponent } from './members/member-messages/member-messages.component';
 import { MessagesResolver } from './_resolvers/messages.resolver';
 import { ListsResolver } from './_resolvers/lists.resolver';
@@ -38,6 +44,7 @@ import { FileUploadModule } from 'ng2-file-upload';
 import { TimeagoModule } from 'ngx-timeago';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
 import { ButtonsModule } from 'ngx-bootstrap/buttons';
+import { ModalModule } from 'ngx-bootstrap/modal';
 
 
 export function tokenGetter() {
@@ -57,7 +64,12 @@ export function tokenGetter() {
       MemberDetailComponent,
       MemberEditComponent,
       PhotoEditorComponent,
-      MemberMessagesComponent
+      MemberMessagesComponent,
+      AdminPanelComponent,
+      HasRoleDirective,
+      PhotoManagementComponent,
+      UserManagementComponent,
+      RolesModalComponent
    ],
    imports: [
       BrowserModule,
@@ -72,6 +84,7 @@ export function tokenGetter() {
       BsDropdownModule.forRoot(),
       BsDatepickerModule.forRoot(),
       TabsModule.forRoot(),
+      ModalModule.forRoot(),
       RouterModule.forRoot(appRoutes),
       NgxGalleryModule,
       FileUploadModule,
@@ -94,7 +107,11 @@ export function tokenGetter() {
       MemberListResolver,
       AuthGuard,
       MemberEditResolver,
-      PreventUnsavedChanges
+      PreventUnsavedChanges,
+      AdminService
+   ],
+   entryComponents: [
+      RolesModalComponent
    ],
    bootstrap: [
       AppComponent
